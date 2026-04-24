@@ -16,6 +16,11 @@ jobs:
       - name: Build Docker image
         run: docker build -t sriramcj/myapp .
 
+      - name: Debug secrets
+        run: |
+              if [ -z "${{ secrets.DOCKER_USER }}" ]; then echo "USER EMPTY"; else echo "USER OK"; fi
+              if [ -z "${{ secrets.DOCKER_PASS }}" ]; then echo "PASS EMPTY"; else echo "PASS OK"; fi
+
       - name: Login DockerHub
         run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
 
