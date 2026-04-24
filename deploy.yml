@@ -1,0 +1,4 @@
+- name: Login DockerHub
+  run: |
+    echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+
